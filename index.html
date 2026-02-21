@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Shawn Marketing - Expert sites web, SEO local, branding & Facebook Ads pour entreprises de Trois-Rivières. Résultats garantis ou argent remis.">
+    <meta name="description" content="Shawn Marketing - Sites web, SEO local, branding & Facebook Ads pour entreprises de Trois-Rivières. Résultats garantis ou argent remis.">
     <title>Shawn Marketing | Portfolio - Trois-Rivières | trmarketing.netlify.app</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" as="style">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap');
         body { font-family: 'Inter', system-ui, sans-serif; }
@@ -14,28 +15,26 @@
         .hero-bg { background: linear-gradient(rgba(30,58,138,0.88), rgba(15,23,42,0.92)), url('https://picsum.photos/id/1015/2000/1200') center/cover no-repeat; }
         .card-hover { transition: all 0.4s cubic-bezier(0.4,0,0.2,1); }
         .card-hover:hover { transform: translateY(-12px); box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25); }
+        .nav-link-pulse { animation: pulse-discreet 2s infinite ease-in-out; }
+        @keyframes pulse-discreet { 0%,100% { opacity: 1; } 50% { opacity: 0.85; } }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800">
 
-    <!-- NAV -->
-    <nav class="bg-white border-b sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <div class="w-11 h-11 bg-gradient-to-br from-blue-700 to-indigo-700 rounded-3xl flex items-center justify-center text-white font-bold text-3xl">S</div>
-                <div>
-                    <span class="font-semibold text-3xl tracking-tighter">Shawn</span>
-                    <span class="text-blue-600 font-medium">Marketing</span>
-                </div>
+    <!-- NAV - Compact, professional, mobile-first, single-line phone, no S logo -->
+    <nav class="bg-white border-b sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div>
+                <span class="font-semibold text-2xl md:text-3xl tracking-tighter">Shawn Marketing</span>
             </div>
-            <div class="hidden md:flex gap-8 text-base font-medium">
+            <div class="hidden md:flex items-center gap-8 text-base font-medium">
                 <a href="#portfolio" class="hover:text-blue-600 transition">Portfolio</a>
                 <a href="#services" class="hover:text-blue-600 transition">Services</a>
                 <a href="#garantie" class="hover:text-blue-600 transition">Garantie</a>
-                <a href="calculateur-viabilite.html" class="hover:text-blue-600 transition font-semibold text-blue-600">Calculateur Viabilité</a>
-                <a href="#contact" class="hover:text-blue-600 transition">Contact</a>
+                <a href="calculateur-viabilite.html" class="text-blue-600 font-semibold nav-link-pulse">Calculateur Viabilité</a>
             </div>
-            <a href="#contact" class="bg-blue-700 hover:bg-blue-800 text-white px-8 py-4 rounded-3xl font-semibold flex items-center gap-3 transition">
+            <a href="#contact" 
+               class="bg-blue-700 hover:bg-blue-800 text-white px-6 py-3 md:px-8 md:py-4 rounded-3xl font-semibold text-sm md:text-base flex items-center gap-2 transition whitespace-nowrap">
                 <i class="fas fa-phone"></i> 819-555-0123
             </a>
         </div>
@@ -47,7 +46,7 @@
             <div class="max-w-3xl">
                 <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur px-6 py-3 rounded-3xl text-sm mb-8">
                     <span class="w-3 h-3 bg-emerald-400 rounded-full animate-pulse"></span>
-                    Trois-Rivières • Mauricie • Centre-du-Québec
+                    Trois-Rivières • Mauricie • trmarketing.netlify.app
                 </div>
                 <h1 class="heading-font text-6xl md:text-7xl leading-none font-bold mb-8">
                     Ton entreprise locale mérite<br>
@@ -63,24 +62,20 @@
                         Voir mes réalisations →
                     </a>
                 </div>
-                <div class="mt-16 flex gap-8 text-sm">
-                    <div class="flex items-center gap-3"><i class="fas fa-check text-emerald-400 text-2xl"></i> 100 % local</div>
-                    <div class="flex items-center gap-3"><i class="fas fa-check text-emerald-400 text-2xl"></i> Garantie résultats ou argent remis</div>
-                </div>
             </div>
         </div>
     </header>
 
-    <!-- PORTFOLIO -->
+    <!-- PORTFOLIO - Replace the 3 background-image URLs with your real images -->
     <section id="portfolio" class="max-w-7xl mx-auto px-6 py-24">
         <div class="text-center mb-16">
             <span class="bg-blue-100 text-blue-700 text-xs font-semibold px-5 py-2 rounded-3xl">MES RÉALISATIONS À TROIS-RIVIÈRES</span>
             <h2 class="heading-font text-5xl mt-6 mb-4">Des résultats concrets pour des entreprises comme la tienne</h2>
         </div>
         <div class="grid md:grid-cols-3 gap-8">
-            <!-- Projet 1 -->
+            <!-- 1. Construction -->
             <div class="card-hover bg-white rounded-3xl overflow-hidden border border-slate-100">
-                <div class="h-64 bg-cover" style="background-image:url('https://picsum.photos/id/1015/800/600')"></div>
+                <div class="h-64 bg-cover" style="background-image: url('https://picsum.photos/id/1015/800/600')"></div>
                 <div class="p-8">
                     <h3 class="font-semibold text-2xl">Construction Desilets-Larkin</h3>
                     <p class="text-blue-600">Bécancour / Trois-Rivières</p>
@@ -92,9 +87,9 @@
                     <a href="https://constructiondesiletslarkin.ca" target="_blank" class="block text-center border border-slate-300 hover:border-blue-600 py-4 rounded-3xl font-medium">Voir le site →</a>
                 </div>
             </div>
-            <!-- Projet 2 -->
+            <!-- 2. CozyCyst -->
             <div class="card-hover bg-white rounded-3xl overflow-hidden border border-slate-100">
-                <div class="h-64 bg-cover" style="background-image:url('https://picsum.photos/id/201/800/600')"></div>
+                <div class="h-64 bg-cover" style="background-image: url('https://picsum.photos/id/201/800/600')"></div>
                 <div class="p-8">
                     <h3 class="font-semibold text-2xl">CozyCyst.com</h3>
                     <p class="text-blue-600">E-commerce santé</p>
@@ -106,11 +101,11 @@
                     <a href="https://cozycyst.com" target="_blank" class="block text-center border border-slate-300 hover:border-blue-600 py-4 rounded-3xl font-medium">Voir la boutique →</a>
                 </div>
             </div>
-            <!-- Projet 3 -->
+            <!-- 3. Oasis Lavage Auto -->
             <div class="card-hover bg-white rounded-3xl overflow-hidden border border-slate-100">
-                <div class="h-64 bg-cover" style="background-image:url('https://picsum.photos/id/106/800/600')"></div>
+                <div class="h-64 bg-cover" style="background-image: url('https://picsum.photos/id/106/800/600')"></div>
                 <div class="p-8">
-                    <h3 class="font-semibold text-2xl">Oasis Lavage Auto à Domicile</h3>
+                    <h3 class="font-semibold text-2xl">Oasis Lavage Auto</h3>
                     <p class="text-blue-600">Service à domicile Trois-Rivières</p>
                     <ul class="space-y-3 my-8 text-sm">
                         <li class="flex gap-3"><i class="fas fa-check text-emerald-500 mt-1"></i> Entreprise créée de A à Z</li>
@@ -141,22 +136,22 @@
                             <div class="w-14 h-14 bg-blue-100 rounded-3xl flex items-center justify-center text-4xl flex-shrink-0">🔍</div>
                             <div>
                                 <h3 class="font-semibold text-2xl">SEO local Google</h3>
-                                <p class="text-slate-600">Tu apparais en 1re page quand les clients cherchent tes services.</p>
+                                <p class="text-slate-600">Tu apparais en 1re page quand tes clients cherchent à Trois-Rivières.</p>
                             </div>
                         </div>
                         <div class="flex gap-6">
                             <div class="w-14 h-14 bg-blue-100 rounded-3xl flex items-center justify-center text-4xl flex-shrink-0">📘</div>
                             <div>
                                 <h3 class="font-semibold text-2xl">Branding & Facebook Ads</h3>
-                                <p class="text-slate-600">Contenu visuels professionel qui attirent l’œil + pubs ultra-ciblées dans un rayon de 35 km.</p>
+                                <p class="text-slate-600">Visuels qui attirent l’œil + pubs ultra-ciblées dans un rayon de 30 km.</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="bg-slate-50 rounded-3xl p-12 flex items-center">
                     <div>
-                        <div class="text-7xl font-bold text-blue-700 mb-3">97%</div>
-                        <p class="text-2xl">de mes clients locaux ont vu leurs ventes ou rendez-vous monter en moins de 60 jours.</p>
+                        <div class="text-7xl font-bold text-blue-700 mb-3">97 %</div>
+                        <p class="text-2xl">de mes clients locaux ont vu leurs ventes ou rendez-vous exploser en 60 jours.</p>
                     </div>
                 </div>
             </div>
@@ -220,7 +215,7 @@
                 <h2 class="heading-font text-6xl">Parlons de ton projet</h2>
                 <p class="text-2xl text-slate-400 mt-4">Consultation gratuite 30 min • Sans engagement</p>
             </div>
-            <form action="https://formspree.io/f/xjgeavga" method="POST" class="bg-slate-800 rounded-3xl p-12 space-y-8">
+            <form action="https://formspree.io/f/movjjeqd" method="POST" class="bg-slate-800 rounded-3xl p-12 space-y-8">
                 <input type="hidden" name="_subject" value="Nouvelle consultation - Shawn Marketing">
                 <input type="hidden" name="_next" value="https://trmarketing.netlify.app/merci.html">
                 <div class="grid md:grid-cols-2 gap-8">
@@ -234,18 +229,17 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
+    <!-- FOOTER - Updated prosperity slogan, no S logo -->
     <footer class="bg-slate-950 text-slate-400 py-16">
         <div class="max-w-7xl mx-auto px-6 text-center">
-            <div class="flex justify-center mb-8">
-                <div class="flex items-center gap-3 text-white">
-                    <div class="w-10 h-10 bg-blue-700 rounded-3xl flex items-center justify-center text-3xl">S</div>
-                    <span class="font-bold text-4xl">Shawn Marketing</span>
-                </div>
+            <div class="flex justify-center mb-6">
+                <span class="font-bold text-3xl text-white">Shawn Marketing</span>
             </div>
             <p class="text-xl">Trois-Rivières • Mauricie</p>
-            <p class="mt-4">trmarketing.netlify.app • © 2026</p>
-            <p class="text-xs mt-12 opacity-60">Fait avec passion pour les entrepreneurs locaux qui veulent grandir vite</p>
+            <p class="mt-6 text-base max-w-md mx-auto leading-relaxed">
+                Fait avec passion pour les entrepreneurs locaux qui veulent créer un patrimoine profitable et améliorer la qualité de vie de leurs clients
+            </p>
+            <p class="text-xs mt-12 opacity-60">trmarketing.netlify.app • © 2026</p>
         </div>
     </footer>
 
