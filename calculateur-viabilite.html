@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculateur gratuit de viabilité projet - Shawn Marketing Trois-Rivières. Vois en 30 secondes si ton idée va générer du profit avant même de dépenser 1 $.">
+    <title>Calculateur Viabilité Projet | Shawn Marketing - trmarketing.netlify.app</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap');
+        body { font-family: 'Inter', system-ui, sans-serif; }
+        .heading-font { font-family: 'Playfair Display', sans-serif; }
+        .input { width: 100%; background: white; border: 2px solid #e2e8f0; border-radius: 9999px; padding: 24px 28px; font-size: 1.125rem; }
+        .input:focus { border-color: #2563eb; outline: none; box-shadow: 0 0 0 4px rgba(37,99,235,0.15); }
+        .bubbles { background: linear-gradient(90deg, #2563eb, #4f46e5); color: white; font-weight: 700; font-size: 1.25rem; padding: 28px 64px; border-radius: 9999px; box-shadow: 0 10px 30px -10px rgb(37 99 235); transition: all 0.3s; }
+        .bubbles:hover { transform: scale(1.05); }
+        .scenario { background: white; border-radius: 24px; padding: 32px; margin-bottom: 24px; box-shadow: 0 10px 30px -15px rgb(0 0 0 / 0.1); }
+        .profit { color: #10b981; font-weight: 700; }
+        .deficit { color: #ef4444; font-weight: 700; }
+        .arrow-container { opacity: 0; transition: opacity 0.8s ease; }
+        .arrow-container.show { opacity: 1; }
+        .cta-bg { background: linear-gradient(rgba(30,58,138,0.95), rgba(15,23,42,0.95)), url('https://picsum.photos/id/1015/2000/1200') center/cover; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <!-- NAV (exactement comme la page d'accueil) -->
+    <nav class="bg-white border-b sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-11 h-11 bg-gradient-to-br from-blue-700 to-indigo-700 rounded-3xl flex items-center justify-center text-white font-bold text-3xl">S</div>
+                <div>
+                    <span class="font-semibold text-3xl tracking-tighter">Shawn</span>
+                    <span class="text-blue-600 font-medium">Marketing</span>
+                </div>
+            </div>
+            <div class="hidden md:flex gap-8 text-base font-medium">
+                <a href="index.html" class="hover:text-blue-600 transition">Accueil</a>
+                <a href="index.html#portfolio" class="hover:text-blue-600 transition">Portfolio</a>
+                <a href="index.html#services" class="hover:text-blue-600 transition">Services</a>
+                <a href="index.html#garantie" class="hover:text-blue-600 transition">Garantie</a>
+                <a href="calculateur-viabilite.html" class="font-semibold text-blue-600">Calculateur Viabilité</a>
+            </div>
+            <a href="index.html#contact" class="bg-blue-700 hover:bg-blue-800 text-white px-8 py-4 rounded-3xl font-semibold flex items-center gap-3 transition">
+                <i class="fas fa-phone"></i> 819-555-0123
+            </a>
+        </div>
+    </nav>
+
+    <!-- CALCULATOR -->
+    <div class="max-w-4xl mx-auto px-6 py-20">
+        <div class="text-center mb-16">
+            <h1 class="heading-font text-6xl font-bold text-slate-900">Une Idée Réussie En Un Coup 👁️</h1>
+            <p class="text-2xl text-slate-600 mt-4 max-w-xl mx-auto">Découvrez la viabilité de votre projet avant même de dépenser 1 $</p>
+        </div>
+
+        <div class="bg-white rounded-3xl shadow-2xl p-12 md:p-16">
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- FORM -->
+                <div>
+                    <select id="platform" onchange="updateBenchmarks()" class="input mb-6">
+                        <option value="general">Choisir une plateforme (Optionnel)</option>
+                        <option value="meta">Meta Ads (Facebook/Instagram)</option>
+                        <option value="tiktok">TikTok Ads</option>
+                        <option value="google">Google Ads</option>
+                        <option value="ecommerce">E-commerce</option>
+                    </select>
+
+                    <input type="number" id="budget" class="input mb-6" placeholder="Budget Publicitaire ($/Jour)" min="0" required>
+                    <input type="number" id="cost" class="input mb-6" placeholder="Coût de Production par unité ($)" min="0" required>
+                    <input type="number" id="sellingPrice" class="input mb-8" placeholder="Prix de Vente par unité ($)" min="0" required>
+
+                    <button onclick="calculate()" class="bubbles w-full">
+                        <span class="flex items-center justify-center gap-3">
+                            <i class="fas fa-calculator"></i>
+                            Voir mon résultat maintenant
+                        </span>
+                    </button>
+                </div>
+
+                <!-- ARROW -->
+                <div id="arrowContainer" class="arrow-container hidden md:flex items-center justify-center pt-12">
+                    <div class="arrow flex flex-col items-center">
+                        <div class="shaft w-2 h-20 bg-gradient-to-b from-blue-500 to-indigo-600 rounded-full"></div>
+                        <div class="head w-0 h-0 border-l-8 border-l-transparent border-r-8 border-r-transparent border-t-12 border-t-indigo-600"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RESULTS -->
+            <div id="results" class="mt-16"></div>
+        </div>
+    </div>
+
+    <!-- STRONG CTA - "Make your project alive and profitable" -->
+    <section class="cta-bg text-white py-28 text-center">
+        <div class="max-w-3xl mx-auto px-6">
+            <h2 class="heading-font text-5xl md:text-6xl leading-none font-bold mb-8">
+                Ton idée est-elle rentable ?
+            </h2>
+            <p class="text-2xl md:text-3xl mb-12 max-w-2xl mx-auto">
+                Si le calculateur te montre du profit… je peux le transformer en réalité en 30 jours.
+            </p>
+            <a href="index.html#contact" 
+               class="inline-block bg-white text-blue-700 hover:bg-slate-100 px-16 py-8 rounded-3xl text-2xl font-bold transition shadow-2xl">
+                Contacte-moi maintenant → Rendre mon projet vivant &amp; profitable
+            </a>
+            <p class="mt-8 text-sm opacity-80">Consultation gratuite • Réponse en moins de 24 h • Garantie résultats ou argent remis</p>
+        </div>
+    </section>
+
+    <!-- FOOTER (EXACTEMENT le même que la page d'accueil) -->
+    <footer class="bg-slate-950 text-slate-400 py-16">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="flex justify-center mb-8">
+                <div class="flex items-center gap-3 text-white">
+                    <div class="w-10 h-10 bg-blue-700 rounded-3xl flex items-center justify-center text-3xl">S</div>
+                    <span class="font-bold text-4xl">Shawn Marketing</span>
+                </div>
+            </div>
+            <p class="text-xl">Trois-Rivières • Mauricie</p>
+            <p class="mt-4">trmarketing.netlify.app • © 2026</p>
+            <p class="text-xs mt-12 opacity-60">Fait avec passion pour les entrepreneurs locaux qui veulent grandir vite</p>
+        </div>
+    </footer>
+
+    <script>
+        const benchmarks = {
+            general: { highCPM: 15, lowCPM: 5, highCPC: 4, lowCPC: 0.6, ctr: 0.02, convRate: 0.02 },
+            meta: { highCPM: 15, lowCPM: 8, highCPC: 2.5, lowCPC: 0.8, ctr: 0.015, convRate: 0.02 },
+            tiktok: { highCPM: 12, lowCPM: 5, highCPC: 1.5, lowCPC: 0.4, ctr: 0.008, convRate: 0.006 },
+            google: { highCPM: 25, lowCPM: 10, highCPC: 6, lowCPC: 1.5, ctr: 0.05, convRate: 0.03 },
+            ecommerce: { highCPM: 12, lowCPM: 6, highCPC: 2, lowCPC: 0.7, ctr: 0.018, convRate: 0.025 }
+        };
+        let currentBenchmarks = benchmarks.general;
+
+        function updateBenchmarks() {
+            const selected = document.getElementById('platform').value;
+            currentBenchmarks = benchmarks[selected] || benchmarks.general;
+        }
+
+        function calculate() {
+            const budget = parseFloat(document.getElementById('budget').value);
+            const cost = parseFloat(document.getElementById('cost').value);
+            const sellingPrice = parseFloat(document.getElementById('sellingPrice').value);
+
+            if (!budget || !cost || !sellingPrice || budget <= 0 || sellingPrice <= cost) {
+                alert("Veuillez remplir tous les champs avec des valeurs valides (prix de vente > coût).");
+                return;
+            }
+
+            const { highCPM, lowCPM, highCPC, lowCPC, ctr, convRate } = currentBenchmarks;
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = `<p class="text-center text-blue-600 font-semibold text-2xl mb-8">Résultats pour : ${document.getElementById('platform').selectedOptions[0].text}</p>`;
+
+            document.getElementById("arrowContainer").classList.add("show");
+            resultsDiv.scrollIntoView({ behavior: "smooth" });
+
+            function getMetrics(clicks) {
+                const sales = Math.round(clicks * convRate);
+                const revenue = sales * sellingPrice;
+                const cogs = sales * cost;
+                const adSpend = budget * 30; // estimation 30 jours
+                const profit = revenue - cogs - adSpend;
+                const roas = (revenue / adSpend).toFixed(2);
+                const profitMargin = revenue > 0 ? ((profit / revenue) * 100).toFixed(1) : 0;
+                return { sales, revenue: revenue.toFixed(0), profit: profit.toFixed(0), roas, profitMargin };
+            }
+
+            function addScenario(title, value, isCPM) {
+                let impressions, clicks;
+                if (isCPM) {
+                    impressions = Math.round((budget * 1000) / value);
+                    clicks = Math.round(impressions * ctr);
+                } else {
+                    clicks = Math.round(budget / value);
+                    impressions = Math.round(clicks / ctr);
+                }
+                const metrics = getMetrics(clicks);
+                const profitClass = parseFloat(metrics.profit) > 0 ? 'profit' : 'deficit';
+                const profitLabel = parseFloat(metrics.profit) > 0 ? '✅ Profit net estimé' : '⚠️ Déficit estimé';
+
+                resultsDiv.innerHTML += `
+                    <div class="scenario">
+                        <h3 class="font-bold text-2xl mb-6">${title}</h3>
+                        <div class="grid grid-cols-2 gap-x-8 gap-y-4 text-lg">
+                            <div><strong>${isCPM ? 'CPM' : 'CPC'} :</strong> $${value}</div>
+                            <div><strong>Clics :</strong> ${clicks}</div>
+                            <div><strong>Ventes :</strong> ${metrics.sales}</div>
+                            <div><strong>Revenu :</strong> $${metrics.revenue}</div>
+                            <div><strong>ROAS :</strong> ${metrics.roas}x</div>
+                            <div><strong>Marge :</strong> ${metrics.profitMargin}%</div>
+                        </div>
+                        <p class="${profitClass} text-4xl mt-10">${profitLabel} : $${Math.abs(metrics.profit)}</p>
+                    </div>`;
+            }
+
+            addScenario('Scénario agence traditionnelle (cher)', highCPM, true);
+            addScenario('Scénario Shawn Marketing (optimisé)', lowCPM, true);
+            addScenario('Scénario agence traditionnelle CPC', highCPC, false);
+            addScenario('Scénario Shawn Marketing (CPC bas)', lowCPC, false);
+        }
+    </script>
+</body>
+</html>
