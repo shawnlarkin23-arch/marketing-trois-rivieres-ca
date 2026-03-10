@@ -25,25 +25,50 @@ body{font-family:'Inter',system-ui,sans-serif;}
 <body class="bg-slate-50 text-slate-800">
 
 <!-- NAV -->
-<nav class="bg-white border-b sticky top-0 z-50 shadow-sm">
-<div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
-<div class="flex items-center gap-3">
-<div class="w-11 h-11 bg-gradient-to-br from-blue-700 to-indigo-700 rounded-3xl flex items-center justify-center text-white font-bold text-3xl">S</div>
+<nav id="navbar" class="bg-white border-b sticky top-0 z-50 shadow-sm transition-all duration-300">
+<div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+
 <div>
-<span class="font-semibold text-3xl tracking-tighter">Shawn</span>
-<span class="text-blue-600 font-medium">Marketing</span>
+<span class="font-semibold text-2xl md:text-3xl tracking-tighter">
+Shawn Marketing
+</span>
 </div>
-</div>
-<div class="hidden md:flex gap-8 text-base font-medium">
-<a href="index.html">Accueil</a>
-<a href="index.html#portfolio">Portfolio</a>
-<a href="index.html#services">Services</a>
-<a href="index.html#garantie">Garantie</a>
-<a href="calculateur-viabilite.html" class="font-semibold text-blue-600">Calculateur</a>
-</div>
-<a href="index.html#contact" class="bg-blue-700 hover:bg-blue-800 text-white px-8 py-4 rounded-3xl font-semibold flex items-center gap-3 transition">
-<i class="fas fa-phone"></i> 819-555-0123
+
+<!-- Desktop menu -->
+<div class="hidden md:flex items-center gap-8 text-base font-medium">
+<a href="#portfolio" class="hover:text-blue-600 transition">Portfolio</a>
+<a href="#services" class="hover:text-blue-600 transition">Services</a>
+<a href="#garantie" class="hover:text-blue-600 transition">Garantie</a>
+<a href="calculateur-viabilite.html" class="text-blue-600 font-semibold nav-link-pulse">
+Calculateur Viabilité
 </a>
+</div>
+
+<!-- Phone button (single line guaranteed) -->
+<a href="#contact"
+class="bg-blue-700 hover:bg-blue-800 text-white px-6 py-3 md:px-8 md:py-4 rounded-3xl font-semibold text-sm md:text-base flex items-center gap-2 transition whitespace-nowrap">
+<i class="fas fa-phone"></i>
+<span class="whitespace-nowrap">819-555-0123</span>
+</a>
+
+<!-- Hamburger -->
+<button id="hamburger" class="md:hidden text-2xl ml-4">
+<i class="fas fa-bars"></i>
+</button>
+
+</div>
+
+<!-- Mobile dropdown -->
+<div id="mobileMenu" class="mobile-menu bg-white border-t md:hidden">
+<div class="flex flex-col px-6 py-4 gap-4 text-base font-medium">
+<a href="#portfolio" class="hover:text-blue-600">Portfolio</a>
+<a href="#services" class="hover:text-blue-600">Services</a>
+<a href="#garantie" class="hover:text-blue-600">Garantie</a>
+<a href="calculateur-viabilite.html" class="text-blue-600 font-semibold nav-link-pulse">
+Calculateur Viabilité
+</a>
+<a href="#contact" class="hover:text-blue-600">Contact</a>
+</div>
 </div>
 </nav>
 
